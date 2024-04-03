@@ -8,6 +8,8 @@ const initWebRoutes = (app) => {
 	router.get('/user', homeContronller.handleUserPage)
 	router.post('/users/create-user', homeContronller.handleCreateNewUser)
 	router.post('/delete-user/:id', homeContronller.handleDeleteUser)
+	router.get('/update-user/:id', homeContronller.getUpdateUserPage)
+	router.post('/users/update-user', homeContronller.handleUpdateUser)
 	return app.use('/', router)
 }
 
