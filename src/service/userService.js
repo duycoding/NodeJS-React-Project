@@ -22,7 +22,7 @@ const createNewUser = async (email, passowrd, username) => {
 		Promise: bluebird,
 	})
 	// connection.query(
-	// 	'INSERT INTO users (email, password, username) VALUES (?, ?, ?)',
+	// 	'INSERT INTO user (email, password, username) VALUES (?, ?, ?)',
 	// 	[email, hashPass, username],
 	// 	function (err, results, fields) {
 	// 		if (err) {
@@ -32,7 +32,7 @@ const createNewUser = async (email, passowrd, username) => {
 	// )
 	try {
 		const [rows, fields] = await connection.execute(
-			'INSERT INTO users (email, password, username) VALUES (?, ?, ?)',
+			'INSERT INTO user (email, password, username) VALUES (?, ?, ?)',
 			[email, hashPass, username],
 		)
 	} catch (error) {
@@ -47,18 +47,18 @@ const getUserList = async () => {
 		database: 'jwt',
 		Promise: bluebird,
 	})
-	let users = []
-	// connection.query('select * from users', function (err, results, fields) {
+	let user = []
+	// connection.query('select * from user', function (err, results, fields) {
 	// 	if (err) {
 	// 		console.log(err)
-	// 		return users
+	// 		return user
 	// 	}
-	// 	users = results
-	// 	console.log('>>> the result when i run: ', users)
-	// 	return users
+	// 	user = results
+	// 	console.log('>>> the result when i run: ', user)
+	// 	return user
 	// })
 	try {
-		const [rows, fields] = await connection.execute('select * from users')
+		const [rows, fields] = await connection.execute('select * from user')
 		return rows
 	} catch (error) {
 		console.log(error)
@@ -72,19 +72,19 @@ const deleteUser = async (id) => {
 		database: 'jwt',
 		Promise: bluebird,
 	})
-	let users = []
-	// connection.query('select * from users', function (err, results, fields) {
+	let user = []
+	// connection.query('select * from user', function (err, results, fields) {
 	// 	if (err) {
 	// 		console.log(err)
-	// 		return users
+	// 		return user
 	// 	}
-	// 	users = results
-	// 	console.log('>>> the result when i run: ', users)
-	// 	return users
+	// 	user = results
+	// 	console.log('>>> the result when i run: ', user)
+	// 	return user
 	// })
 	try {
 		const [rows, fields] = await connection.execute(
-			'DELETE FROM users WHERE id=?',
+			'DELETE FROM user WHERE id=?',
 			[id],
 		)
 		// return rows
@@ -100,19 +100,19 @@ const getUserById = async (id) => {
 		database: 'jwt',
 		Promise: bluebird,
 	})
-	let users = []
-	// connection.query('select * from users', function (err, results, fields) {
+	let user = []
+	// connection.query('select * from user', function (err, results, fields) {
 	// 	if (err) {
 	// 		console.log(err)
-	// 		return users
+	// 		return user
 	// 	}
-	// 	users = results
-	// 	console.log('>>> the result when i run: ', users)
-	// 	return users
+	// 	user = results
+	// 	console.log('>>> the result when i run: ', user)
+	// 	return user
 	// })
 	try {
 		const [rows, fields] = await connection.execute(
-			'SELECT * FROM users where id=?',
+			'SELECT * FROM user where id=?',
 			[id],
 		)
 		// console.log(rows)
@@ -129,11 +129,11 @@ const updateUserInfor = async (email, username, id) => {
 		database: 'jwt',
 		Promise: bluebird,
 	})
-	let users = []
+	let user = []
 
 	try {
 		const [rows, fields] = await connection.execute(
-			'update users set email = ?, username = ? where id = ? ',
+			'update user set email = ?, username = ? where id = ? ',
 			[email, username, id],
 		)
 		// console.log(rows)
